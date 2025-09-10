@@ -1,8 +1,7 @@
-FROM node:18-alpine 
+FROM node:18-alpine AS base
+RUN apk add --no-cache libc6-compat
 
-RUN apt-get update && apt-get install -y procps && rm -rf /var/lib/apt/list/*
-
-RUN install -g pnpm 
+RUN corepack enable && corepack prepare pnpm@latest --activate
 
 WORKDIR /app
 
@@ -14,5 +13,8 @@ COPY ./out/full/ .
 RUN pnpm install --no-frozen-lockfile --prod=false
 
 EXPOSE 3000
-CMD [ "pnpm","run","dev" ]
+
+CMD ["pnpm", "run", "dev"]
+
+
 
