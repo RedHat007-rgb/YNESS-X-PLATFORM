@@ -1,6 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-import { checker } from '@repo/db';
 
 @Controller()
 export class AppController {
@@ -8,7 +7,6 @@ export class AppController {
 
   @Get()
   getHello(): string {
-    console.log(checker());
     return this.appService.getHello();
   }
 }
