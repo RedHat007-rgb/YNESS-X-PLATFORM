@@ -1,1 +1,18 @@
 FROM node:18-alpine 
+
+RUN apt-get update && apt-get install -y procps && rm -rf /var/lib/apt/list/*
+
+RUN install -g pnpm 
+
+WORKDIR /app
+
+COPY ./out/json/package.json .
+COPY ./out/json/pnpm-lock.yaml .
+
+COPY ./out/full/ .
+
+RUN pnpm install --no-frozen-lockfile --prod=false
+
+EXPOSE 3000
+CMD [ "pnpm","run","dev" ]
+
