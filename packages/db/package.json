@@ -8,10 +8,14 @@
     "build": "tsc -b"
   },
   "dependencies": {
+    "@types/node": "^24.3.1",
+    "mysql2": "^3.14.5",
+    "pg": "8.16.3",
+    "typeorm": "0.3.26",
     "typescript": "5.9.2"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs"
+  "type": "module",
+  "devDependencies": {
+    "tsx": "^4.20.5"
+  }
 }
